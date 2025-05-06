@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <button id="darkModeToggle" class="dark-mode-btn show showMobile" type="button" aria-label="Switch to Dark">
+        <img src="static\moon (1).png" alt="Dark Mode" id="themeIcon">
+    </button> 
+
+    <!-- Scroll to Top Button -->
+    <button class="scrollUpButton show showMobile" type="button" aria-label="Scroll to Top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" height="20" width="20" aria-hidden="true">
+            <g>
+                <path d="M16 12.5a1 1 0 0 1-.29.71 1 1 0 0 1-1.42 0L10 8.91l-4.29 4.3a1 1 0 0 1-1.42-1.42l5-5a1 1 0 0 1 1.42 0l5 5a1 1 0 0 1 .29.71Z"></path>
+            </g>
+        </svg>
+    </button>
+
+    <div class="container">
+        <h1>Portfolio Generator</h1>
+        
+        <!-- Navigation Bar -->
+        <nav class="taskbar">
+            <ul>
+                <li><a href="#summarySection" class="taskbar-item">Summary</a></li>
+                <li><a href="#educationSection" class="taskbar-item">Education</a></li>
+                <li><a href="#skillsSection" class="taskbar-item">Skills</a></li>
+                <li><a href="#experienceSection" class="taskbar-item">Experience</a></li>
+                <li><a href="#projectsSection" class="taskbar-item">Projects</a></li>
+                <li><a href="#certificationsSection" class="taskbar-item">Certifications</a></li>
+            </ul>
+        </nav>
+
+        <!-- File Upload Section -->
+        <div class="upload-section">
+            <label for="pdfUpload" class="custom-file-upload">
+                <i class="fas fa-cloud-upload-alt"></i> Choose PDF
+            </label>
+            <input type="file" id="pdfUpload" accept="application/pdf" style="display: none" onchange="updateFileName()" />
+            <button id="uploadButton" onclick="uploadPDF()" class="custom-file-upload">Upload PDF</button>
+            <button id="resetButton" onclick="resetForm()" class="custom-file-upload">Reset</button>
+            <p id="fileName" class="file-name">No file chosen</p>
+        </div>
+
+        <!-- Loading Section -->
+        <div id="loadingSection" style="display: none">
+            <div class="spinner"></div>
+            <p>Extracting data... Estimated time: <span id="estimatedTime">20</span> seconds</p>
+        </div>
+        <div id="error-message" style="display: none; color: red"></div>
+
+        <!-- Portfolio Sections -->
+        <div id="portfolioContainer" style="display: none" class="portfolio-grid">
+            <div id="summarySection" class="portfolio-section">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h2>Summary</h2>
+                            <p>Click to view summary details.</p>
+                        </div>
+                        <div class="card-back">
+                            <h2>Summary</h2>
+                            <div class="content">
+                                <p>Your summary goes here...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="educationSection" class="portfolio-section">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h2>Education</h2>
+                            <p>Click to view education details.</p>
+                        </div>
+                        <div class="card-back">
+                            <h2>Education</h2>
+                            <div class="content">
+                                <p>Education details go here...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="skillsSection" class="portfolio-section">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h2>Skills</h2>
+                            <p>Click to view skills details.</p>
+                        </div>
+                        <div class="card-back">
+                            <h2>Skills</h2>
+                            <div class="content">
+                                <p>Skills details go here...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="experienceSection" class="portfolio-section">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h2>Experience</h2>
+                            <p>Click to view experience details.</p>
+                        </div>
+                        <div class="card-back">
+                            <h2>Experience</h2>
+                            <div class="content">
+                                <p>Experience details go here...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="projectsSection" class="portfolio-section">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h2>Projects</h2>
+                            <p>Click to view project details.</p>
+                        </div>
+                        <div class="card-back">
+                            <h2>Projects</h2>
+                            <div class="content">
+                                <p>Projects details go here...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="certificationsSection" class="portfolio-section">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h2>Certifications</h2>
+                            <p>Click to view certification details.</p>
+                        </div>
+                        <div class="card-back">
+                            <h2>Certifications</h2>
+                            <div class="content">
+                                <p>Certifications details go here...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
